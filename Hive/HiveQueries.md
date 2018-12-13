@@ -39,45 +39,49 @@ CREATE TABLE WITH AVRO FILE FORMAT
 	  
 CREATE TABLE WITH JSON SERDE
 
-ADD JAR '/usr/lib/hive-hcatalog/share/hcatalog/hive-hcatalog-core.jar';
-create table using below -
+	ADD JAR '/usr/lib/hive-hcatalog/share/hcatalog/hive-hcatalog-core.jar';
 
-CREATE TABLE JSON_TABLE (product_id int,
-product_cat_id int,
-product_name string,
-product_description string,
-product_price double,
-product_image string)
-ROW FORMAT SERDE
-'org.apache.hive.hcatalog.data.JsonSerDe' 
-STORED AS TEXTFILE;
+
+	CREATE TABLE JSON_TABLE (product_id int,
+	product_cat_id int,
+	product_name string,
+	product_description string,
+	product_price double,
+	product_image string)
+	ROW FORMAT SERDE
+	'org.apache.hive.hcatalog.data.JsonSerDe' 
+	STORED AS TEXTFILE;
 
 CREATE PARTITIONED TABLE :
-  CREATE TABLE IF NOT EXISTS EMP_PARTITIONED (
-  EMP_NO INT,
-  BIRTH_YEAR STRING,
-  FIRST_NAME STRING,
-  LAST_NAME STRING,
-  HIRE_DATE STRING)
-  PARTITIONED BY (HIRE_YEAR INT)
-  ROW FORMAT DELIMITED
-  FIELDS TERMINATED BY '\t'
-  LINES TERMINATED BY '\n';
-create a static partition : ALTER TABLE EMP_PARTITIONED ADD PARTITIONED (HIRE_YEAR = 2016)
+  	CREATE TABLE IF NOT EXISTS EMP_PARTITIONED (
+  	EMP_NO INT,
+  	BIRTH_YEAR STRING,
+ 	FIRST_NAME STRING,
+ 	LAST_NAME STRING,
+  	HIRE_DATE STRING)
+  	PARTITIONED BY (HIRE_YEAR INT)
+  	ROW FORMAT DELIMITED
+  	FIELDS TERMINATED BY '\t'
+  	LINES TERMINATED BY '\n';
 
-inserting into partition
+create a static partition : 
 
-INSERT INTO TABLE EMP_PARTITIONED PARTITION (HIRE_YEAR = 2016)
-VALUES (10001,'1984','HELENA','BARBA','2016-01-01');
-CREATING DYNAMIC PARTITION;
+	ALTER TABLE EMP_PARTITIONED ADD PARTITIONED (HIRE_YEAR = 2016)
 
-set hive.exec.dynamic.partition.mode = nonstrict;
-set hive.exec.max.dynamic.partitions = 2000;
-set hive.exec.max.dynamic.partitions.pernode = 2000;
+inserting into partition :
 
-INSERT OVERWRITE TABLE EMP_PARTITIONED 
-PARTITION (HIRE_YEAR)
-SELECT EMP_NO, SUBSTR(BIRTH_DATE,1,4) AS BIRTH_YEAR,FIRST_NAME,LAST_NAME,
-HIRE_DATE,SUBSTR(HIRE_DATE,1,4) AS HIRE_YEAR 
-FROM DEFAULT.EMPLOYEES;
+	INSERT INTO TABLE EMP_PARTITIONED PARTITION (HIRE_YEAR = 2016)
+	VALUES (10001,'1984','HELENA','BARBA','2016-01-01');
+
+CREATING DYNAMIC PARTITION :
+
+	set hive.exec.dynamic.partition.mode = nonstrict;
+	set hive.exec.max.dynamic.partitions = 2000;
+	set hive.exec.max.dynamic.partitions.pernode = 2000;
+
+	INSERT OVERWRITE TABLE EMP_PARTITIONED 
+	PARTITION (HIRE_YEAR)
+	SELECT EMP_NO, SUBSTR(BIRTH_DATE,1,4) AS BIRTH_YEAR,FIRST_NAME,LAST_NAME,
+	HIRE_DATE,SUBSTR(HIRE_DATE,1,4) AS HIRE_YEAR 
+	FROM DEFAULT.EMPLOYEES;
 

@@ -1,9 +1,9 @@
 <H3> control+A delimiter and control+B delimiter
 
-cut -d $'\x02' -f2 SCI_APPROVED_LIMIT_01.SQL  --> ctrl+B (^B)
-cut -d $'\x01' -f2 SCI_APPROVED_LIMIT_01.SQL  --> ctrl+A (^A)
+cut -d $'\x02' -f2 a.SQL  --> ctrl+B (^B)
+cut -d $'\x01' -f2 b.SQL  --> ctrl+A (^A)
 
-awk -F '\x02' '{ if(($1 == "${prcs_nm}") && ($8 == "P")) { print $2} }' ${PROCESS_META_PATH}/${SOURCE_UPPER}_${COUNTRY_UPPER}_PROCESS.meta
+awk -F '\x02' '{ if(($1 == "${prcs_nm}") && ($8 == "P")) { print $2} }' filename.meta
 
 awk '$[column]="[replace]"' FS=, OFS=, inputfile > outputfile
 

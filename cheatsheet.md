@@ -1,16 +1,16 @@
 <H3> control+A delimiter and control+B delimiter
   
   
-cut -d $'\x02' -f2 a.SQL  --> ctrl+B (^B)
-cut -d $'\x01' -f2 b.SQL  --> ctrl+A (^A)
+  cut -d $'\x02' -f2 a.SQL  --> ctrl+B (^B)
+  cut -d $'\x01' -f2 b.SQL  --> ctrl+A (^A)
 
-awk -F '\x02' '{ if(($1 == "${prcs_nm}") && ($8 == "P")) { print $2} }' filename.meta
+  awk -F '\x02' '{ if(($1 == "${prcs_nm}") && ($8 == "P")) { print $2} }' filename.meta
 
-awk '$[column]="[replace]"' FS=, OFS=, inputfile > outputfile
+  awk '$[column]="[replace]"' FS=, OFS=, inputfile > outputfile
 
-awk -F '\x02' '$4="GB"' inputfile > outputfile
+  awk -F '\x02' '$4="GB"' inputfile > outputfile
 
-sed -i "s/^BUK^B/^BGB^B/g" *
+  sed -i "s/^BUK^B/^BGB^B/g" *
 
 
 <H3> hive force execution of script -
@@ -21,12 +21,12 @@ sed -i "s/^BUK^B/^BGB^B/g" *
 <H3>Beeline force execution of the script -
   
 
---force=true
+  --force=true
 
 <H3> Beeline command to submit a hql file
   
 
-beeline -u 'URL' --showHeader=false --outputformat=csv2 -n <user_name> -p <pwd> -f filename.hql
+  beeline -u 'URL' --showHeader=false --outputformat=csv2 -n <user_name> -p <pwd> -f filename.hql
 
-beeline -u '<URL>?tez.queue.name=<QueueName>;serviceDiscoveryMode=zookeeper;zooKeeperNamespace=hiveserver2;' -n <user>  -w <pwd file name>
+  beeline -u '<URL>?tez.queue.name=<QueueName>;serviceDiscoveryMode=zookeeper;zooKeeperNamespace=hiveserver2;' -n <user>  -w <pwd file name>
 

@@ -15,8 +15,9 @@
 
 <H3> hive force execution of script -
   
+  
 
---hiveconf hive.cli.errors.ignore=true 
+  --hiveconf hive.cli.errors.ignore=true 
 
 <H3>Beeline force execution of the script -
   

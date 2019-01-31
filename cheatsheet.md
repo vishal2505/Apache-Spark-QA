@@ -1,5 +1,6 @@
 <H3> control+A delimiter and control+B delimiter
-
+  
+  
 cut -d $'\x02' -f2 a.SQL  --> ctrl+B (^B)
 cut -d $'\x01' -f2 b.SQL  --> ctrl+A (^A)
 
@@ -13,14 +14,17 @@ sed -i "s/^BUK^B/^BGB^B/g" *
 
 
 <H3> hive force execution of script -
+  
 
 --hiveconf hive.cli.errors.ignore=true 
 
 <H3>Beeline force execution of the script -
+  
 
 --force=true
 
 <H3> Beeline command to submit a hql file
+  
 
 beeline -u 'URL' --showHeader=false --outputformat=csv2 -n <user_name> -p <pwd> -f filename.hql
 

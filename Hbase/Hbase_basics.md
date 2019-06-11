@@ -1,4 +1,5 @@
-<h1> What is Hbase ?
+## What is Hbase ?
+
 HBase is an open-source, column-oriented distributed database system in a Hadoop environment. Initially, it was Google Big Table, afterward, it was re-named as HBase and is primarily written in Java.  Apache HBase is needed for real-time Big Data applications.
 
 ### HBase Unique Features
@@ -14,3 +15,25 @@ HBase is an open-source, column-oriented distributed database system in a Hadoop
 9. Easy to use Java API for client access
 10. Block cache and Bloom Filters for real-time queries
 11. Query predicate pushes down via server-side filters.
+
+### Hbase Architecture
+
+HBase is a column-oriented database and data is stored in tables. The tables are sorted by RowId.
+
+#### Storage Mechanism in Hbase
+
+Coming to HBase the following are the key terms representing table schema
+
+Table: Collection of rows present.
+Row: Collection of column families.
+Column Family: Collection of columns.
+Column: Collection of key-value pairs.
+Namespace: Logical grouping of tables.
+Cell: A {row, column, version} tuple exactly specifies a cell definition in HBase.
+
+Each table must have an element defined as Primary Key.
+Row key acts as a Primary key in HBase.
+Any access to HBase tables uses this Primary Key
+
+
+

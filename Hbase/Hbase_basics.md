@@ -33,7 +33,7 @@ Cell: A {row, column, version} tuple exactly specifies a cell definition in HBas
 
 Each table must have an element defined as Primary Key.
 Row key acts as a Primary key in HBase.
-Any access to HBase tables uses this Primary Key
+Any access to HBase tables uses this Primary Key.
 
 
 

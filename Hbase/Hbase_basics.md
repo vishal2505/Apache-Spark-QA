@@ -62,13 +62,13 @@ Any access to HBase tables uses this Primary Key.
 
   Region Server runs on HDFS DataNode and consists of the following components –
 
-  **Block Cache –** This is the read cache. Most frequently read data is stored in the read cache and whenever the block cache is full, recently used data is evicted.
+    **Block Cache –** This is the read cache. Most frequently read data is stored in the read cache and whenever the block cache is full, recently used data is evicted.
 
-  **MemStore** This is the write cache and stores new data that is not yet written to the disk. Every column family in a region has a MemStore.
+    **MemStore** This is the write cache and stores new data that is not yet written to the disk. Every column family in a region has a MemStore.
 
-  **Write Ahead Log (WAL)** is a file that stores new data that is not persisted to permanent storage.
+    **Write Ahead Log (WAL)** is a file that stores new data that is not persisted to permanent storage.
   
-  **HFile** is the actual storage file that stores the rows as sorted key values on a disk.
+    **HFile** is the actual storage file that stores the rows as sorted key values on a disk.
 
 #### Zookeeper
 

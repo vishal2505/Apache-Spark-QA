@@ -80,5 +80,23 @@ Any access to HBase tables uses this Primary Key.
     . Tracking server failure and network partitions.
     . Maintain Configuration Information
     . Provides ephemeral nodes, which represent different region servers.
+    
+    
+### HBase Auto Sharding Concept and Explanation
+
+One of the interesting capabilities in HBase is auto sharding, which simply means that tables are dynamically distributed by the system to different region servers when they become too large. In other word, Splitting and serving regions can be thought of as auto sharding, as offered by other systems.
+
+In Hbase, the scalability and load balancing is handled using region. Regions are contiguous ranges of rows stored together. Regions are dynamically split by the HBase storage manager system when they become too large. Alternatively, they may also be merged to reduce their number and required storage files.
+
+Each region is served by exactly one region server, and each region server can serve many regions at any given point of time.
+
+Initially, when you HBase create table, there is only one region for a table. When regions become too large when you start adding more rows, the region is split into two at the middle key, creating two roughly equal halves.
+
+  #### Identify Row Key and Region Server
+
+   Client system does not have to contact master to put or get rows from table. It can query the meta table to identify the region server that is responsible for handling set of keys which are available in region.
+
+  META table is a HBase system table. The mapping of Regions and Region Servers is kept in a HBase system table called META.  META table has information about which region is responsible for your key. For any read or write operation client will directly go to region server. Hmaster is not at all involved! Regions servers are responsible to server the requested data to client applications.
+
 
 

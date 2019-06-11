@@ -24,15 +24,22 @@ HBase is a column-oriented database and data is stored in tables. The tables are
 
 Coming to HBase the following are the key terms representing table schema
 
-Table: Collection of rows present.
-Row: Collection of column families.
-Column Family: Collection of columns.
-Column: Collection of key-value pairs.
-Namespace: Logical grouping of tables.
-Cell: A {row, column, version} tuple exactly specifies a cell definition in HBase.
+**Table:** Collection of rows present.
 
-Each table must have an element defined as Primary Key.
+**Row:** Collection of column families.
+
+**Column Family:** Collection of columns.
+
+**Column:** Collection of key-value pairs.
+
+**Namespace:** Logical grouping of tables.
+
+**Cell:** A {row, column, version} tuple exactly specifies a cell definition in HBase.
+
+Each table must have an element defined as **Primary Key.**
+
 Row key acts as a Primary key in HBase.
+
 Any access to HBase tables uses this Primary Key.
 
 
